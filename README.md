@@ -1,0 +1,2 @@
+# scalastringcourse
+Scalaの文字列処理についての学習資料を作成するためのリポジトリ
