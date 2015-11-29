@@ -1,7 +1,5 @@
 package day2
 
-import java.io.File
-
 import org.junit.Test
 import org.scalatest.junit.AssertionsForJUnit
 
@@ -205,35 +203,7 @@ class Day2TestSuite extends AssertionsForJUnit {
     assert(yoshi == "𠮷")
   }
 
-  @Test
-  def testOSDependentCharacter(): Unit = {
-    //改行
-    //Windows: \r\n
-    //UNIX:      \n
-    val newLine1 = System.getProperty("line.separator")
-    val newLine2 = System.lineSeparator()
-    val newLine3 = String.format("%n")
 
-    assert(newLine1 == newLine2)
-    assert(newLine2 == newLine3)
-    assert(newLine1 == newLine3)
-
-    //ディレクトリやファイルのパスの区切り
-    //Windows: \\
-    //UNIX:     /
-    val fileSeparator1 = System.getProperty("file.separator")
-    val fileSeparator2 = File.separator
-
-    assert(fileSeparator1 == fileSeparator2)
-
-    //PATHやCLASSPATHの区切り
-    //Windows: ;
-    //UNIX:    :
-    val pathSeparator1 = System.getProperty("path.separator")
-    val pathSeparator2 = File.pathSeparator
-
-    assert(pathSeparator1 == pathSeparator2)
-  }
 }
 
 object Day2TestStringContext {
