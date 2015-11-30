@@ -1,2 +1,2 @@
 # Scalaの文字列処理
-Wikiにスライドと台本をまとめます。
+[Wiki](https://github.com/ynupc/scalastringcourse/wiki)にスライドと台本をまとめます。
