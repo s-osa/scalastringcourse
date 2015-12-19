@@ -180,6 +180,10 @@ Code PointからLow SurrogateをCharacter.lowSurrogateメソッドで取得で�
 ```
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.013.jpeg" width="500px"><br>
+CharSequence、String、Char配列からCode PointにcodePointAt/codePointBeforeメソッドを使用して変換できます。
+codePointAtは順方向、codePointBeforeは逆方向に解析します。
+基本的にできるだけLower Levelで処理を書くと（究極的にはJVMやLLVM、アセンブリ言語、機械語など）処理は高速化しますが、プログラム長が長く、プログラムを書く時間がかかり、変数が多く、可読性が低いため、バグが発生しやすく、保守性が低いプログラムになります。逆にできるだけHigher Levelで書くと、無駄にメモリを使用したり、余計なオーバヘッドが発生し、処理が遅くなりがちです。例えば、Char配列のラッパークラスのStringクラスからCharを扱うと、Stringが持つ処理に不要なメソッドがメモリに乗りメモリ効率が悪いです。また、Stringを介してChar配列にアクセスするため、直接Char配列にアクセスするより、速度が低下します。プログラミングでは、このようなトレードオフがよく発生します。
+<br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.014.jpeg" width="500px"><br>
 ```scala
   @Test
