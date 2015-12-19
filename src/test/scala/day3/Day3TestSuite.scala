@@ -1,5 +1,7 @@
 package day3
 
+import java.text.{CharacterIterator, StringCharacterIterator}
+
 import org.junit.Test
 import org.scalatest.junit.AssertionsForJUnit
 
@@ -175,11 +177,11 @@ class Day3TestSuite extends AssertionsForJUnit {
 
   @Test
   def testCharSequenceToCodePointInForwardDirection(): Unit = {
-    val seq: CharSequence = "CharSequenceは、String、StringBuilder、 StringBuffer、CharBufferなどが実装しているインターフェース"
+    val charSequence: CharSequence = "CharSequenceは、String、StringBuilder、 StringBuffer、CharBufferなどが実装しているインターフェース"
     val index: Int = 0
-    val codePoint: Int = Character.codePointAt(seq, index)
+    val codePoint: Int = Character.codePointAt(charSequence, index)
     //NullPointerException:
-    //seqがnullである場合発生
+    //charSequenceがnullである場合発生
     //IndexOutOfBoundsException:
     //0 ≦ index < seq.lengthに反した場合発生
 
@@ -240,11 +242,11 @@ class Day3TestSuite extends AssertionsForJUnit {
 
   @Test
   def testCharSequenceToCodePointInBackwardDirection(): Unit = {
-    val seq: CharSequence = "CharSequenceは、String、StringBuilder、 StringBuffer、CharBufferなどが実装しているインターフェース"
+    val charSequence: CharSequence = "CharSequenceは、String、StringBuilder、 StringBuffer、CharBufferなどが実装しているインターフェース"
     val index: Int = 1
-    val codePoint: Int = Character.codePointBefore(seq, index)
+    val codePoint: Int = Character.codePointBefore(charSequence, index)
     //NullPointerException:
-    //seqがnullである場合発生
+    //charSequenceがnullである場合発生
     //IndexOutOfBoundsException:
     //1 ≦ index ≦ seq.lengthに反した場合発生
 
@@ -257,9 +259,9 @@ class Day3TestSuite extends AssertionsForJUnit {
     val index: Int = 1
     val codePoint: Int = str.codePointBefore(index)
     //NullPointerException:
-    //seqがnullである場合発生
+    //strがnullである場合発生
     //IndexOutOfBoundsException:
-    //1 ≦ index ≦ seq.lengthに反した場合発生
+    //1 ≦ index ≦ str.lengthに反した場合発生
 
     assert(codePoint == 'C')
   }
@@ -275,6 +277,8 @@ class Day3TestSuite extends AssertionsForJUnit {
   def testCharSequenceToString(): Unit = {
     val charSequence: CharSequence = "CharSequenceは、String、StringBuilder、 StringBuffer、CharBufferなどが実装しているインターフェース"
     val str: String = charSequence.toString
+    //NullPointerException:
+    //charSequenceがnullである場合発生
 
     assert(charSequence == str)
   }
@@ -283,6 +287,8 @@ class Day3TestSuite extends AssertionsForJUnit {
   def testCharSequenceToCharArray(): Unit = {
     val charSequence: CharSequence = "𠮷野家"
     val charArray: Array[Char] = charSequence.chars.toArray.map(_.toChar)
+    //NullPointerException:
+    //charSequenceがnullである場合発生
 
     assert(charArray.length == 4)
     assert(charArray.head == 0xD842)
@@ -295,6 +301,8 @@ class Day3TestSuite extends AssertionsForJUnit {
   def testStringToCharArray1(): Unit = {
     val str: String = "𠮷野家"
     val charArray: Array[Char] = str.toCharArray
+    //NullPointerException:
+    //strがnullである場合発生
 
     assert(charArray.length == 4)
     assert(charArray.head == 0xD842)
@@ -307,6 +315,8 @@ class Day3TestSuite extends AssertionsForJUnit {
   def testStringToCharArray2(): Unit = {
     val str: String = "𠮷野家"
     val charArray: Array[Char] = str.chars.toArray.map(_.toChar)
+    //NullPointerException:
+    //strがnullである場合発生
 
     assert(charArray.length == 4)
     assert(charArray.head == 0xD842)
@@ -318,7 +328,7 @@ class Day3TestSuite extends AssertionsForJUnit {
   @Test
   def testCharArrayToString(): Unit = {
     val charArray: Array[Char] = Array(0xD842.toChar, 0xDFB7.toChar, '野', '家')
-    val str = new String(charArray)
+    val str: String = new String(charArray)
 
     assert(str == "𠮷野家")
   }
@@ -355,6 +365,8 @@ class Day3TestSuite extends AssertionsForJUnit {
   def testCharSequenceToCodePointArray(): Unit = {
     val charSequence: CharSequence = "𠮷野家"
     val codePointArray: Array[Int] = charSequence.codePoints().toArray
+    //NullPointerException:
+    //charSequenceがnullである場合発生
 
     assert(codePointArray.length == 3)
     assert(codePointArray.head == 0x20BB7)
@@ -366,10 +378,179 @@ class Day3TestSuite extends AssertionsForJUnit {
   def testStringToCodePointArray(): Unit = {
     val str: String = "𠮷野家"
     val codePointArray: Array[Int] = str.codePoints().toArray
+    //NullPointerException:
+    //strがnullである場合発生
 
     assert(codePointArray.length == 3)
     assert(codePointArray.head == 0x20BB7)
     assert(codePointArray(1) == '野')
     assert(codePointArray.last == '家')
+  }
+
+  @Test
+  def testOffsetByCodePoints1(): Unit = {
+    val charArray: Array[Char] = Array(0xD842.toChar, 0xDFB7.toChar, '野', '家')
+    val start: Int = 0
+    val count: Int = charArray.length
+    val index: Int = 0
+    val numOfCodePoints: Int = 1
+    val indexPlusOffsetByCodePoints: Int = Character.offsetByCodePoints(charArray, start, count, index, numOfCodePoints)
+    //NullPointerException
+    //charArrayがnullである場合
+
+    //IndexOutOfBoundsException
+    //１．startが負数の場合
+    //２．countが負数の場合
+    //３．indexがstart以上start + count以下に収まらない場合
+    //４．charArray.length以下に収まらない場合
+    //５．numOfCodePointsが0より大きく、
+    //indexから始まりstart + count - 1で
+    //終わる範囲のCode Point数が
+    //numOfCodePointsより少ない場合
+    //６．numOfCodePointsが0未満で
+    //startから始まりindex - 1で終わる範囲のCode Point数が
+    //numOfCodePointsの絶対値より少ない場合
+
+    assert(indexPlusOffsetByCodePoints == 2)
+  }
+
+  @Test
+  def testOffsetByCodePoints2(): Unit = {
+    val charSequence: CharSequence = "𠮷野家"
+    val index: Int = 0
+    val numOfCodePoints: Int = 1
+    val indexPlusOffsetByCodePoints: Int = Character.offsetByCodePoints(charSequence, index, numOfCodePoints)
+    //NullPointerException
+    //charSequenceがnullである場合
+
+    //IndexOutOfBoundsException
+    //１．indexが0以上charSequence.length()以下に収まらない場合
+    //２．numOfCodePointsが0より大きく、
+    //indexから始まるサブシーケンスの持つCode Point数が
+    //numOfCodePoints未満の場合
+    //３．numOfCodePointsが0未満で
+    //indexの前のサブシーケンスの持つ値が
+    //numCodePointsの絶対値よりも小さい場合
+
+    assert(indexPlusOffsetByCodePoints == 2)
+  }
+
+  @Test
+  def testOffsetByCodePoints3(): Unit = {
+    val str: String = "𠮷野家"
+    val index: Int = 0
+    val numOfCodePoints: Int = 1
+    val indexPlusOffsetByCodePoints: Int = str.offsetByCodePoints(index, numOfCodePoints)
+    //NullPointerException
+    //strがnullである場合
+
+    //IndexOutOfBoundsException
+    //１．indexが0以上str.length以下に収まらない場合
+    //２．numOfCodePointsが0より大きく、
+    //indexから始まるサブシーケンスの持つCode Point数が
+    //numOfCodePoints未満の場合
+    //３．numOfCodePointsが0未満で
+    //indexの前のサブシーケンスの持つ値が
+    //numCodePointsの絶対値よりも小さい場合
+
+    assert(indexPlusOffsetByCodePoints == 2)
+  }
+
+  @Test
+  def testStringCharacterForwardIterator(): Unit = {
+    val str: String = "𠮷野家"
+    val ghost: Char = '彁'
+    val builder: StringBuilder = new StringBuilder(str.length)
+    val iterator: CharacterIterator = new StringCharacterIterator(str)
+    var char: Char = iterator.first()
+    while (char != CharacterIterator.DONE) {
+      if (Character.isHighSurrogate(char)) {
+        char = iterator.next()
+        if (Character.isLowSurrogate(char)) {
+          builder.append(ghost)
+        }
+      } else {
+        builder.append(char)
+      }
+      char = iterator.next()
+    }
+
+    assert(builder.result() == "彁野家")
+  }
+
+  @Test
+  def testStringCharacterBackwardIterator(): Unit = {
+    val str: String = "𠮷野家"
+    val ghost: Char = '彁'
+    val builder: StringBuilder = new StringBuilder(str.length)
+    val iterator: CharacterIterator = new StringCharacterIterator(str)
+    var char: Char = iterator.last()
+    while (char != CharacterIterator.DONE) {
+      if (Character.isLowSurrogate(char)) {
+        char = iterator.previous()
+        if (Character.isHighSurrogate(char)) {
+          builder.append(ghost)
+        }
+      } else {
+        builder.append(char)
+      }
+      char = iterator.previous()
+    }
+
+    assert(builder.result() == "家野彁")
+  }
+
+  @Test
+  def testStringToCodePointArrayUnderJava8(): Unit = {
+    val str: String = "𠮷野家"
+    val codePointArray = toCodePoints(str)
+    //NullPointerException
+    //strがnullである場合
+
+    assert(codePointArray sameElements Array(0x20BB7, '野', '家'))
+  }
+
+  private def toCodePoints(charSequence: CharSequence): Array[Int] = {
+    if (charSequence == null) {
+      throw new NullPointerException
+    }
+
+    val charArray = charSequence.toString.toCharArray
+    val length = charArray.length
+    var surrogatePairCount = 0
+    var isSkipped = false
+    for (i <- 0 until length) {
+      if (isSkipped) {
+        isSkipped = false
+      } else {
+        if (0 < i && Character.isSurrogatePair(charArray(i - 1), charArray(i))) {
+          surrogatePairCount += 1
+          isSkipped = true
+        }
+      }
+    }
+    isSkipped = false
+    val codePoints = new Array[Int](length - surrogatePairCount)
+    var j = 0
+    for (i <- 0 until length) {
+      if (isSkipped) {
+        isSkipped = false
+      } else {
+        val currentChar = charArray(i)
+        if (Character.isHighSurrogate(currentChar) && i + 1 < length) {
+          val nextChar = charArray(i + 1)
+          if (Character isLowSurrogate nextChar) {
+            codePoints(j) = Character.toCodePoint(currentChar, nextChar)
+            j += 1
+            isSkipped = true
+          }
+        }
+        if (!isSkipped) {
+          codePoints(j) = currentChar
+          j += 1
+        }
+      }
+    }
+    codePoints
   }
 }
