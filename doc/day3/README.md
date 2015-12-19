@@ -181,11 +181,11 @@ Code PointからLow SurrogateをCharacter.lowSurrogateメソッドで取得で�
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.013.jpeg" width="500px"><br>
 CharSequenceインターフェース、Stringクラス、Char配列からCode PointにcodePointAt/codePointBeforeメソッドを使用して変換できます。
-codePointAtは順方向、codePointBeforeは逆方向に解析します。  
-CharSequenceインターフェース、Stringクラス、Char配列のどのメソッドを使用するのが良いかについては、Char配列のようなLower Levelで扱うと処理が高速化し、StringクラスのようなHigher Levelで扱うと処理速度は低下します。
-一般的にできるだけLower Levelで処理を書くと（究極的にはJVMや<a href="https://ja.wikipedia.org/wiki/LLVM" target="_blank">LLVM</a>、<a href="https://ja.wikipedia.org/wiki/%E3%82%A2%E3%82%BB%E3%83%B3%E3%83%96%E3%83%AA%E8%A8%80%E8%AA%9E" target="_blank">アセンブリ言語</a>、<a href="https://ja.wikipedia.org/wiki/%E6%A9%9F%E6%A2%B0%E8%AA%9E" target="_blank">機械語</a>など）処理は高速化しますが、プログラム長が長くなり、プログラムを書く時間が延び、変数が増え、可読性が下がるため、バグが発生しやすく、保守性が低いプログラムになります。逆にできるだけHigher Levelで書くと、無駄にメモリを使用したり、余計なオーバヘッドが発生し、処理が遅くなりがちです。例えば、Char配列のラッパークラスのStringクラスからCharを扱うと、Stringが持つ処理に不要なメソッドがメモリに乗りメモリ効率が悪く、また、Stringを介してChar配列にアクセスするため、直接Char配列にアクセスするより、速度が低下します。プログラミングでは、このようなトレードオフがよく発生します。
+codePointAtは順方向、codePointBeforeは逆方向に解析します。
 <br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.014.jpeg" width="500px"><br>
+CharSequenceインターフェース、Stringクラス、Char配列のどのメソッドを使用するのが良いかについては、Char配列のようなLower Levelで扱うと処理が高速化し、StringクラスのようなHigher Levelで扱うと処理速度は低下します。
+一般的にできるだけLower Levelで処理を書くと（究極的にはJVMや<a href="https://ja.wikipedia.org/wiki/LLVM" target="_blank">LLVM</a>、<a href="https://ja.wikipedia.org/wiki/%E3%82%A2%E3%82%BB%E3%83%B3%E3%83%96%E3%83%AA%E8%A8%80%E8%AA%9E" target="_blank">アセンブリ言語</a>、<a href="https://ja.wikipedia.org/wiki/%E6%A9%9F%E6%A2%B0%E8%AA%9E" target="_blank">機械語</a>など）処理は高速化しますが、プログラム長が長くなり、プログラムを書く時間が延び、変数が増え、可読性が下がるため、バグが発生しやすく、保守性が低いプログラムになります。逆にできるだけHigher Levelで書くと、無駄にメモリを使用したり、余計なオーバヘッドが発生し、処理が遅くなりがちです。例えば、Char配列のラッパークラスのStringクラスからCharを扱うと、Stringが持つ処理に不要なメソッドがメモリに乗りメモリ効率が悪く、また、Stringを介してChar配列にアクセスするため、直接Char配列にアクセスするより、速度が低下します。プログラミングでは、このようなトレードオフがよく発生します。
 ```scala
   @Test
   def testCharArrayElementToCodePointInForwardDirection1(): Unit = {
