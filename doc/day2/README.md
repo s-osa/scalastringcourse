@@ -53,7 +53,7 @@ Javaのchar型はUnicodeの発案に基づいて16bitに設計されましたが
 <br>
 なぜJavaで１文字が１つのchar型で表せなくなったのか、文字コードの歴史を振り返るにあたって、歴史を想像しやすいようにランドマークとして日本史・世界史と代表的なポップ音楽の歴史を足しました。***太字の箇所***だけ読んでいただければ十分です。
 
-最初に文字を電子化したのは１８００年台半ばの<a href="https://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%BC%E3%83%AB%E3%82%B9%E7%AC%A6%E5%8F%B7" target="_blank">モールス信号</a>です。  
+最初に文字をコード化・電子化したのは１８００年台半ばの<a href="https://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%BC%E3%83%AB%E3%82%B9%E7%AC%A6%E5%8F%B7" target="_blank">モールス信号</a>です。  
 今日文字入力装置として使われるキーボードの原型は、１９００年代初めの<a href="https://ja.wikipedia.org/wiki/%E3%82%BF%E3%82%A4%E3%83%97%E3%83%A9%E3%82%A4%E3%82%BF%E3%83%BC" target="_blank">タイプライター</a>標準化で生まれました。  
 １９４５年に<a href="https://ja.wikipedia.org/wiki/%E7%AC%AC%E4%BA%8C%E6%AC%A1%E4%B8%96%E7%95%8C%E5%A4%A7%E6%88%A6" target="_blank">第二次世界大戦</a>が終結します。<a href="https://ja.wikipedia.org/wiki/%E5%AE%AE%E5%9F%8E%E4%BA%8B%E4%BB%B6" target="_blank">宮城事件</a>。  
 １９４６年に最初のコンピュータの一つと言われる<a href="https://ja.wikipedia.org/wiki/ENIAC" target="_blank">ENIAC(エニアック)</a>が登場します。  
