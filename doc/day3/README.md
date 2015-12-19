@@ -86,7 +86,10 @@ Character.toCharsメソッドがCode PointからSurrogate Pairを表すChar配�
     }
   }
 ```
+***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.010.jpeg" width="500px"><br>
+Code PointがいくつのCharで表されるのかを取得する方法について説明します。先ほどのように一度Charの配列に変換してしまう方法があります。
+<br>
 ```scala
   @Test
   def testCodePointToNumOfChars1(): Unit = {
@@ -103,6 +106,7 @@ Character.toCharsメソッドがCode PointからSurrogate Pairを表すChar配�
   }
 ```
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.011.jpeg" width="500px"><br>
+Character.charCountメソッドを使用して、直接Code PointからいくつのCharで表されるのかを取得することができます。
 ```scala
   @Test
   def testCodePointToNumOfChars2(): Unit = {
@@ -120,6 +124,7 @@ Character.toCharsメソッドがCode PointからSurrogate Pairを表すChar配�
     }
   }
 ```
+Code PointがBMP領域にあるのかSupplementary領域にあるのかを調べることでいくつのCharで表されるのかを取得することができます。
 ```scala
   @Test
   def testCodePointToNumOfChars3(): Unit = {
