@@ -146,6 +146,10 @@ Shift JISやEUC-JPの一部は<a href="https://ja.wikipedia.org/wiki/JIS_X_0201"
     assert(waveDashStringLiteral == waveDashRawStringLiteral)
   }
 ```
+<h3>メモ：文字列の一致</h3>
+Javaでは、==演算子（!=演算子）はプリミティブ型の一致（不一致）は見られてもString型や<a href="https://ja.wikipedia.org/wiki/%E3%83%97%E3%83%AA%E3%83%9F%E3%83%86%E3%82%A3%E3%83%96%E3%83%A9%E3%83%83%E3%83%91%E3%83%BC%E3%82%AF%E3%83%A9%E3%82%B9" target="_blank">プリミティブラッパークラス</a>のようなオブジェクト型に対してはスタック領域上にある参照の一致を見てしまい内容の一致を見ることはできないため、仮に内容が一致していてもfalseを返す可能性があります。そのため、オブジェクト型ではequalsメソッドにより内容の一致を見なければなりません。これはあまり直感的ではなくしばしばバグを生む原因になります。一方で、Scalaではプリミティブ型は存在せず、全てがオブジェクト型であり、全てのオブジェクト型に対して==演算子（!=演算子）とequalsメソッド（!演算子を伴うequalsメソッド）で内容の一致を見ることができます。Javaのように参照の一致を見たい場合は、eqメソッド（neメソッド）が使用できます。
+<h3>メモ：文字の一致</h3>
+Javaでは、String型はequalsメソッドを用いなければ内容の一致を見ることができませんが、char型はプリミティブ型なので==演算子で一致を見ることができます。さらに、char型は整数型（16bit）なので、他の整数型（byte型は8bit、short型は16bit、int型は32bit、long型は64bit）や浮動小数（float型は32bit、double型は64bit）と==演算子（!=演算子）で値の一致を見ることができます。
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day2/string_course.007.jpeg" width="500px">
 <br>
