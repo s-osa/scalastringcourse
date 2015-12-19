@@ -547,7 +547,7 @@ class Day3TestSuite extends AssertionsForJUnit {
         val currentChar = charArray(i)
         if (Character.isHighSurrogate(currentChar) && i + 1 < length) {
           val nextChar = charArray(i + 1)
-          if (Character isLowSurrogate nextChar) {
+          if (Character.isLowSurrogate(nextChar)) {
             codePoints(j) = Character.toCodePoint(currentChar, nextChar)
             j += 1
             isSkipped = true
