@@ -501,9 +501,9 @@ class Day3TestSuite extends AssertionsForJUnit {
   }
 
   @Test
-  def testStringToCodePointArrayUnderJava8(): Unit = {
+  def testCharSequenceToCodePointArrayUnderJava8(): Unit = {
     val str: String = "𠮷野家"
-    val codePointArray = toCodePoints(str)
+    val codePointArray: Array[Int] = toCodePoints(str)
     //NullPointerException
     //strがnullである場合
 
@@ -515,10 +515,18 @@ class Day3TestSuite extends AssertionsForJUnit {
       throw new NullPointerException
     }
 
-    val charArray = charSequence.toString.toCharArray
-    val length = charArray.length
-    var surrogatePairCount = 0
-    var isSkipped = false
+    val charArray: Array[Char] =
+      {
+        charSequence match {
+          case str: String =>
+            str
+          case otherwise =>
+            otherwise.toString
+        }
+      }.toCharArray
+    val length: Int = charArray.length
+    var surrogatePairCount: Int = 0
+    var isSkipped: Boolean = false
     for (i <- 0 until length) {
       if (isSkipped) {
         isSkipped = false
@@ -530,8 +538,8 @@ class Day3TestSuite extends AssertionsForJUnit {
       }
     }
     isSkipped = false
-    val codePoints = new Array[Int](length - surrogatePairCount)
-    var j = 0
+    val codePoints: Array[Int] = new Array[Int](length - surrogatePairCount)
+    var j: Int = 0
     for (i <- 0 until length) {
       if (isSkipped) {
         isSkipped = false
