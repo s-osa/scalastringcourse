@@ -124,7 +124,7 @@ Character.charCountメソッドを使用して、直接Code Pointからいくつ
     }
   }
 ```
-Code PointがBMP領域にあるのかSupplementary領域にあるのかを調べることでいくつのCharで表されるのかを取得することができます。
+Code PointがBMP領域にあるのかSupplementary領域にあるのかを調べることで、いくつのCharで表されるのかを取得することができます。
 ```scala
   @Test
   def testCodePointToNumOfChars3(): Unit = {
@@ -144,7 +144,9 @@ Code PointがBMP領域にあるのかSupplementary領域にあるのかを調べ
     }
   }
 ```
+***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.012.jpeg" width="500px"><br>
+Code PointからHigh SurrogateをCharacter.highSurrogateメソッドで取得できます。
 ```scala
   @Test
   def testCodePointToHighSurrogate(): Unit = {
@@ -160,6 +162,7 @@ Code PointがBMP領域にあるのかSupplementary領域にあるのかを調べ
     }
   }
 ```
+Code PointからLow SurrogateをCharacter.lowSurrogateメソッドで取得できます。
 ```scala
   @Test
   def testCodePointToLowSurrogate(): Unit = {
@@ -175,6 +178,7 @@ Code PointがBMP領域にあるのかSupplementary領域にあるのかを調べ
     }
   }
 ```
+***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.013.jpeg" width="500px"><br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.014.jpeg" width="500px"><br>
 ```scala
@@ -316,6 +320,7 @@ Code PointがBMP領域にあるのかSupplementary領域にあるのかを調べ
   }
 ```
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.015.jpeg" width="500px"><br>
+***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.016.jpeg" width="500px"><br>
 ```scala
   @Test
@@ -336,6 +341,7 @@ Code PointがBMP領域にあるのかSupplementary領域にあるのかを調べ
     assert(charSequence == str)
   }
 ```
+***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.017.jpeg" width="500px"><br>
 ```scala
   @Test
@@ -391,6 +397,7 @@ Code PointがBMP領域にあるのかSupplementary領域にあるのかを調べ
     assert(str == "𠮷野家")
   }
 ```
+***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.018.jpeg" width="500px"><br>
 ```scala
   @Test
@@ -415,6 +422,7 @@ Code PointがBMP領域にあるのかSupplementary領域にあるのかを調べ
 ```
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.019.jpeg" width="500px"><br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.020.jpeg" width="500px"><br>
+***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.021.jpeg" width="500px"><br>
 ```scala
   @Test
@@ -425,6 +433,7 @@ Code PointがBMP領域にあるのかSupplementary領域にあるのかを調べ
     assert(str == "𠮷野家")
   }
 ```
+***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.022.jpeg" width="500px"><br>
 ```scala
   @Test
@@ -454,6 +463,7 @@ Code PointがBMP領域にあるのかSupplementary領域にあるのかを調べ
     assert(codePointArray.last == '家')
   }
 ```
+***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.023.jpeg" width="500px"><br>
 codePointAt/codePointBeforeメソッドと同様に、CharacterクラスはChar配列、CharSequenceに対して、Stringクラスは自身のStringに対してoffsetByCodePointsメソッドを持っています。
 ```scala
@@ -528,6 +538,7 @@ codePointAt/codePointBeforeメソッドと同様に、CharacterクラスはChar�
     assert(indexPlusOffsetByCodePoints == 2)
   }
 ```
+***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.024.jpeg" width="500px"><br>
 ```scala
   @Test
@@ -575,7 +586,9 @@ codePointAt/codePointBeforeメソッドと同様に、CharacterクラスはChar�
     assert(builder.result() == "家野彁")
   }
 ```
+***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.025.jpeg" width="500px"><br>
+***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.026.jpeg" width="500px"><br>
 <ul>
 <li><a href="http://www.ibm.com/developerworks/library/j-unicode/" target="_blank">http://www.ibm.com/developerworks/library/j-unicode/</a>
