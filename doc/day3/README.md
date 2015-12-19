@@ -8,9 +8,17 @@ CharやStringは<a href="https://ja.wikipedia.org/wiki/UTF-16" target="_blank">U
 なお、プログラム上で文字を扱う場合は<a href="https://ja.wikipedia.org/wiki/%E3%83%90%E3%82%A4%E3%83%88%E3%82%AA%E3%83%BC%E3%83%80%E3%83%BC%E3%83%9E%E3%83%BC%E3%82%AF" target="_blank">BOM (Byte Order Mark)</a>はつけずに、一般的には<a href="https://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%B3%E3%83%87%E3%82%A3%E3%82%A2%E3%83%B3" target="_blank">Big Endian</a>で扱います。実際には使用するEndianはCPUに依存して選択されるべきですが、ScalaやJavaなど<a href="https://ja.wikipedia.org/wiki/Java%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3" target="_blank">JVM</a>上で動く言語ではJVMの仕様により必ずBig Endianで扱います。
 <br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.004.jpeg" width="500px"><br>
+Supplementary領域ではChar２つで１文字を表現する方法のことをSurrogate Pairと呼びます。ペア（２つの対）になっているCharの前方をHi Surrogate、後方をLow Surrogateと呼びます。
+<br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.005.jpeg" width="500px"><br>
+BMP領域はU+0000からU+FFFFまでの領域、Supplementary領域はU+10000からU+10FFFFまでの領域で、合わせて全容量は21bitです。
+<br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.006.jpeg" width="500px"><br>
+従って、Charの16bitの容量には収まりませんが、
+<br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.007.jpeg" width="500px"><br>
+Char２つの32bitの容量やInt１つの32bitの容量には十分に収まります。
+<br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.008.jpeg" width="500px"><br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.002.jpeg" width="500px"><br>
 今日は、この表をインデックスに各ノードの意味とメソッドを表すリンクについて説明していきます。
