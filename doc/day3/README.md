@@ -1,13 +1,17 @@
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.001.jpeg" width="500px"><br>
 今日は、Code PointとSurrogate Pairについて紹介したいと思います。ご質問や間違いなどのご指摘は下記のコメント欄にお書きください。
 ***
-<img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.002.jpeg" width="500px"><br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.003.jpeg" width="500px"><br>
+Code Pointとは、文字コード上で、文字につけられた番号のことです。UnicodeのCode Pointは<a href="https://ja.wikipedia.org/wiki/Unicode%E4%B8%80%E8%A6%A7%E8%A1%A8" target="_blank">WikipediaのUnicode一覧表のページ</a>から調べることができます。
+ScalaのCharにはChar１つで表せない文字が存在するため、文字単位を正確に扱いたい場合は、CharではなくCode Pointを使用します。ちなみに、Code Pointの符号化方式のことをUTF-32と言います。
+プログラム上で文字を扱う場合は<a href="https://ja.wikipedia.org/wiki/%E3%83%90%E3%82%A4%E3%83%88%E3%82%AA%E3%83%BC%E3%83%80%E3%83%BC%E3%83%9E%E3%83%BC%E3%82%AF" target="_blank">BOM (Byte Order Mark)</a>はつけずに、<a href="https://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%B3%E3%83%87%E3%82%A3%E3%82%A2%E3%83%B3" target="_blank">Big Endian</a>で扱います。
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.004.jpeg" width="500px"><br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.005.jpeg" width="500px"><br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.006.jpeg" width="500px"><br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.007.jpeg" width="500px"><br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.008.jpeg" width="500px"><br>
+<img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.002.jpeg" width="500px"><br>
+今日は、この表をインデックスに各ノードの意味とメソッドを表すリンクについて説明していきます。
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.009.jpeg" width="500px"><br>
 ```scala
   @Test
