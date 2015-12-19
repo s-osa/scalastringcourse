@@ -240,7 +240,7 @@ raw補間子ですが、raw補間子は生文字リテラルと同じように�
 ```
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day2/string_course.013.jpeg" width="500px">
 <br>
-s補間子、f補間子、raw補間子のような補間子を自作することができます。スライドでは、作成したjson補間子の挙動を説明します。
+s補間子、f補間子、raw補間子のような補間子を自作することができます。スライドでは、作成したjson補間子の挙動を説明します。  
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day2/string_course.014.jpeg" width="500px">
 <br>
 まず、json補間子は暗黙的にStringContextクラスのインスタンスを作成します。
