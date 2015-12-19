@@ -6,6 +6,7 @@ Code Pointとは、文字コード上で、文字につけられた番号のこ�
 ScalaのCharにはChar１つで表せない文字が存在するため、文字単位を正確に扱いたい場合は、CharではなくCode Pointを使用します。Code Pointの符号化方式のことを<a href="https://ja.wikipedia.org/wiki/UTF-32" target="_blank">UTF-32</a>と言います。
 CharやStringは<a href="https://ja.wikipedia.org/wiki/UTF-16" target="_blank">UTF-16</a>であり、<a href="https://ja.wikipedia.org/wiki/%E5%9F%BA%E6%9C%AC%E5%A4%9A%E8%A8%80%E8%AA%9E%E9%9D%A2" target="_blank">BMP領域</a>ではChar１つで１文字、<a href="https://ja.wikipedia.org/wiki/%E8%BF%BD%E5%8A%A0%E9%9D%A2" target="_blank">Supplementary領域</a>ではChar２つで１文字を表現します。
 なお、プログラム上で文字を扱う場合は<a href="https://ja.wikipedia.org/wiki/%E3%83%90%E3%82%A4%E3%83%88%E3%82%AA%E3%83%BC%E3%83%80%E3%83%BC%E3%83%9E%E3%83%BC%E3%82%AF" target="_blank">BOM (Byte Order Mark)</a>はつけずに、一般的には<a href="https://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%B3%E3%83%87%E3%82%A3%E3%82%A2%E3%83%B3" target="_blank">Big Endian</a>で扱います。実際には使用するEndianはCPUに依存して選択されるべきですが、ScalaやJavaなど<a href="https://ja.wikipedia.org/wiki/Java%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3" target="_blank">JVM</a>上で動く言語ではJVMの仕様により必ずBig Endianで扱います。
+***
 <br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.004.jpeg" width="500px"><br>
 Supplementary領域ではChar２つで１文字を表現する方法のことをSurrogate Pairと呼びます。ペア（２つの対）になっているCharの前方をHi Surrogate、後方をLow Surrogateと呼びます。
@@ -18,8 +19,12 @@ BMP領域はU+0000からU+FFFFまでの領域、Supplementary領域はU+10000か
 <br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.007.jpeg" width="500px"><br>
 Char２つの32bitの容量やInt１つの32bitの容量には十分に収まります。
+***
 <br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.008.jpeg" width="500px"><br>
+これらがCode PointとSurrogate Pairの相互変換の計算式です。
+***
+<br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.002.jpeg" width="500px"><br>
 今日は、この表をインデックスに各ノードの意味とメソッドを表すリンクについて説明していきます。
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.009.jpeg" width="500px"><br>
