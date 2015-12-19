@@ -26,8 +26,12 @@ Char２つの32bitの容量やInt１つの32bitの容量には十分に収まり
 ***
 <br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.002.jpeg" width="500px"><br>
-今日は、この表をインデックスに各ノードの意味とメソッドを表すリンクについて説明していきます。
+今日は、この表をインデックスにメソッドを表すリンクについて説明していきます。
+***
+<br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.009.jpeg" width="500px"><br>
+Code PointとSurrogate Pairの変換方法について説明します。
+Character.toCodePointメソッドがSurrogate PairからCode Pointへの変換メソッドです。
 ```scala
   @Test
   def testSurrogatePairToCodePoint(): Unit = {
@@ -42,6 +46,7 @@ Char２つの32bitの容量やInt１つの32bitの容量には十分に収まり
     }
   }
 ```
+Character.toCharsメソッドがCode PointからSurrogate Pairを表すChar配列、あるいはSurrogate Pairで表されないCharを１つ含む配列への変換メソッドです。
 ```scala
   @Test
   def testCodePointToSurrogatePair1(): Unit = {
