@@ -22,7 +22,7 @@ Char２つの32bitの容量やInt１つの32bitの容量には十分に収まり
 ***
 <br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.007.jpeg" width="500px"><br>
-これらがCode PointとSurrogate Pairの相互変換の計算式です。
+このスライドに示すのがCode PointとSurrogate Pairの相互変換の計算式です。
 ***
 <br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.008.jpeg" width="500px"><br>
@@ -453,6 +453,7 @@ Code Point数はString.codePointCountメソッドで取得できます。
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.021.jpeg" width="500px"><br>
 Stringオブジェクト及びCharSequenceインターフェースを実装するオブジェクトとCode Point配列との間の相互変換について説明します。
+<br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.022.jpeg" width="500px"><br>
 Code Point配列からStringオブジェクトへはStringクラスのコンストラクタで変換できます。Code Point配列からCharSequenceへは一度Stringクラスのコンストラクトを介してStringオブジェクトに変換し、CharSequenceにキャストすることで変換可能です。
 ```scala
