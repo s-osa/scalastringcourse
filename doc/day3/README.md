@@ -598,7 +598,7 @@ StringCharacterIteratorは、コンストラクタにStringオブジェクトを
     assert(builder.result() == "彁野家")
   }
 ```
-逆方向から解析すると結果は"家野彁"のように逆順になります。
+順方向から解析すると「𠮷」が「彁」に置き換わって"彁野家"が出力されます。
 ```scala
   @Test
   def testStringCharacterBackwardIterator(): Unit = {
@@ -622,6 +622,7 @@ StringCharacterIteratorは、コンストラクタにStringオブジェクトを
     assert(builder.result() == "家野彁")
   }
 ```
+逆方向から解析すると結果は"家野彁"のように逆順になります。
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.026.jpeg" width="500px"><br>
 Surrogate Pairを考慮して文字列をCode Pointで扱うためには、最低でもこのスライドで示したリンクは覚えて欲しいです。
