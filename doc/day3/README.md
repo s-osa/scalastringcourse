@@ -358,7 +358,7 @@ StringオブジェクトはCharSequenceインターフェースを実装して�
 CharSequenceインターフェースを実装しているオブジェクトはtoStringメソッドでStringオブジェクトに変換することができます。
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.017.jpeg" width="500px"><br>
-StringオブジェクトとChar配列との相互変換について説明します。
+Stringオブジェクト及びCharSequenceインターフェースを実装するオブジェクトとChar配列との相互変換について説明します。
 ```scala
   @Test
   def testCharSequenceToCharArray(): Unit = {
@@ -374,7 +374,7 @@ StringオブジェクトとChar配列との相互変換について説明しま�
     assert(charArray.last == '家')
   }
 ```
-CharSequenceインターフェースを実装しているオブジェクトからChar配列へは、CharSequenceインターフェースのcharsメソッド（Java 8以降）でInt Streamを介して変換することができます。
+CharSequenceインターフェースを実装しているオブジェクトからChar配列へは、CharSequenceインターフェースのcharsメソッド（Java 8以降）で<a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/IntStream.html" target="_blank">IntStream</a>を介して変換することができます。
 ```scala
   @Test
   def testStringToCharArray1(): Unit = {
@@ -406,7 +406,7 @@ StringオブジェクトからChar配列へ、toCharArrayメソッドを使用�
     assert(charArray.last == '家')
   }
 ```
-CharSequenceインターフェースを実装しているStringオブジェクトからChar配列へは、CharSequenceインターフェースのcharsメソッド（Java 8以降）でInt Streamを介して変換することができます。
+CharSequenceインターフェースを実装しているStringオブジェクトからChar配列へは、CharSequenceインターフェースのcharsメソッド（Java 8以降）でIntStreamを介して変換することができます。
 ```scala
   @Test
   def testCharArrayToString(): Unit = {
@@ -449,9 +449,11 @@ Char数とCodePoint数はStringオブジェクト内にSurrogate Pairが存在�
 Char数はString.lengthメソッドで取得できます。
 <br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.020.jpeg" width="500px"><br>
-Code Point数はString.codePointメソッドで取得できます。
+Code Point数はString.codePointCountメソッドで取得できます。
 ***
+Stringオブジェクト及びCharSequenceインターフェースを実装するオブジェクトとCode Point配列との間の相互変換について説明します。
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.021.jpeg" width="500px"><br>
+Code Point配列からStringオブジェクトへはStringクラスのコンストラクタで変換できます。Code Point配列からCharSequenceへは一度Stringクラスのコンストラクトを介してStringオブジェクトに変換し、CharSequenceにキャストすることで変換可能です。
 ```scala
   @Test
   def testCodePointArrayToString(): Unit = {
@@ -463,6 +465,7 @@ Code Point数はString.codePointメソッドで取得できます。
 ```
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.022.jpeg" width="500px"><br>
+Stringオブジェクト及びCharSequenceインターフェースを実装するオブジェクトからCode Point配列へはCharSequenceインターフェースのcodePointsメソッド（Java 8以降）でIntStreamを取得し、それをtoArrayメソッドで配列に変換できます。
 ```scala
   @Test
   def testCharSequenceToCodePointArray(): Unit = {
@@ -493,7 +496,7 @@ Code Point数はString.codePointメソッドで取得できます。
 ```
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.023.jpeg" width="500px"><br>
-codePointAt/codePointBeforeメソッドと同様に、CharacterクラスはChar配列、CharSequenceに対して、Stringクラスは自身のStringに対してoffsetByCodePointsメソッドを持っています。
+codePointAt/codePointBeforeメソッドと同様に、CharacterクラスはChar配列、CharSequenceインターフェースを実装するオブジェクトに対して、Stringクラスは自身に対してoffsetByCodePointsメソッドを持っています。
 ```scala
   @Test
   def testOffsetByCodePoints1(): Unit = {
@@ -568,6 +571,7 @@ codePointAt/codePointBeforeメソッドと同様に、CharacterクラスはChar�
 ```
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.024.jpeg" width="500px"><br>
+StringCharacterIteratorは、コンストラクタにStringオブジェクトを与えることでChar単位でイテレートすることができます。StringCharacterIteratorが実装するCharacterIteratorインターフェースは順方向から解析するためのfirstメソッドとnextメソッド、そして逆方向から解析するためのlastメソッドとpreviousメソッドを保持しています。CharacterIterator.DONEでイテレータの終了を判定します。CharacterIterator.DONEはUnicodeの領域上で文字が割り当てられていない<a href="http://www.fileformat.info/info/unicode/char/ffff/index.htm" target="_blank">U+FFFF</a>です。
 ```scala
   @Test
   def testStringCharacterForwardIterator(): Unit = {
