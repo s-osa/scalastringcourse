@@ -186,7 +186,7 @@ codePointAtは順方向、codePointBeforeは逆方向に解析します。
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.014.jpeg" width="500px"><br>
 CharSequenceインターフェースを実装するオブジェクト、Stringオブジェクト、Char配列のどのメソッドを使用するのが良いかについては、Char配列のようなLower Levelで扱うと処理が高速化し、StringオブジェクトのようなHigher Levelで扱うと処理速度は低下します。
 一般的にできるだけLower Levelで処理を書くと（究極的にはJVMや<a href="https://ja.wikipedia.org/wiki/LLVM" target="_blank">LLVM</a>、<a href="https://ja.wikipedia.org/wiki/%E3%82%A2%E3%82%BB%E3%83%B3%E3%83%96%E3%83%AA%E8%A8%80%E8%AA%9E" target="_blank">アセンブリ言語</a>、<a href="https://ja.wikipedia.org/wiki/%E6%A9%9F%E6%A2%B0%E8%AA%9E" target="_blank">機械語</a>など）処理は高速化しますが、プログラム長が長くなり、プログラムを書く時間が延び、変数が増え、可読性が下がるため、バグが発生しやすく、保守性が低いプログラムになります。逆にできるだけHigher Levelで書くと、無駄にメモリを使用したり、余計なオーバヘッドが発生し、処理が遅くなりがちです。例えば、Char配列のラッパークラスのStringクラスからCharを扱うと、Stringクラスが持つ処理に不要なメソッドがメモリに乗りメモリ効率が悪く、また、Stringクラスを介してChar配列にアクセスするため、直接Char配列にアクセスするより、速度が低下します。プログラミングでは、このようなトレードオフがよく発生します。どのくらいの保守性低下を許してどのくらいの処理高速化をとるのかはケースバイケースでのプログラマによる選択が必要です。  <br><br>
-Char配列からCode Pointに順方向にCharacter.codePointAtメソッドで変換する。
+Char配列からCode Pointに順方向にCharacter.codePointAtメソッドで変換できます。
 ```scala
   @Test
   def testCharArrayElementToCodePointInForwardDirection1(): Unit = {
@@ -228,7 +228,7 @@ Char配列からCode Pointに順方向にCharacter.codePointAtメソッドで変
     assert(codePoint == 0xDFB7)
   }
 ```
-CharSequenceインターフェースを実装するオブジェクトからCode Pointに順方向にCharacter.codePointAtメソッドで変換する。
+CharSequenceインターフェースを実装するオブジェクトからCode Pointに順方向にCharacter.codePointAtメソッドで変換できます。
 ```scala
   @Test
   def testCharSequenceToCodePointInForwardDirection(): Unit = {
@@ -243,7 +243,7 @@ CharSequenceインターフェースを実装するオブジェクトからCode 
     assert(codePoint == 'C')
   }
 ```
-StringオブジェクトからCode Pointに順方向にString.codePointAtメソッドで変換する。
+StringオブジェクトからCode Pointに順方向にString.codePointAtメソッドで変換できます。
 ```scala
   @Test
   def testStringToCodePointInForwardDirection(): Unit = {
@@ -258,7 +258,7 @@ StringオブジェクトからCode Pointに順方向にString.codePointAtメソ�
     assert(codePoint == 'C')
   }
 ```
-Char配列からCode Pointに逆方向にCharacter.codePointBeforeメソッドで変換する。
+Char配列からCode Pointに逆方向にCharacter.codePointBeforeメソッドで変換できます。
 ```scala
   @Test
   def testCharArrayElementToCodePointInBackwardDirection1(): Unit = {
@@ -300,7 +300,7 @@ Char配列からCode Pointに逆方向にCharacter.codePointBeforeメソッド�
     assert(codePoint == 0xD842)
   }
 ```
-CharSequenceインターフェースを実装するオブジェクトからCode Pointに逆方向にCharacter.codePointBeforeメソッドで変換する。
+CharSequenceインターフェースを実装するオブジェクトからCode Pointに逆方向にCharacter.codePointBeforeメソッドで変換できます。
 ```scala
   @Test
   def testCharSequenceToCodePointInBackwardDirection(): Unit = {
@@ -315,7 +315,7 @@ CharSequenceインターフェースを実装するオブジェクトからCode 
     assert(codePoint == 'C')
   }
 ```
-StringオブジェクトからCode Pointに逆方向にString.codePointBeforeメソッドで変換する。
+StringオブジェクトからCode Pointに逆方向にString.codePointBeforeメソッドで変換できます。
 ```scala
   @Test
   def testStringToCodePointInBackwardDirection(): Unit = {
@@ -334,6 +334,7 @@ StringオブジェクトからCode Pointに逆方向にString.codePointBeforeメ
 このスライドは、codePointAt/codePointBeforeメソッドが、Surrogate Pairを壊すように解析を開始・終了した場合の挙動を示します。
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.016.jpeg" width="500px"><br>
+CharSequenceインターフェースを実装したオブジェクトとStringオブジェクトとの間の相互変換について説明します。
 ```scala
   @Test
   def testStringToCharSequence(): Unit = {
@@ -342,6 +343,7 @@ StringオブジェクトからCode Pointに逆方向にString.codePointBeforeメ
 
   }
 ```
+StringオブジェクトはCharSequenceインターフェースを実装しているためStringオブジェクトからCharSequenceへはキャストすることができます。
 ```scala
   @Test
   def testCharSequenceToString(): Unit = {
@@ -353,6 +355,7 @@ StringオブジェクトからCode Pointに逆方向にString.codePointBeforeメ
     assert(charSequence == str)
   }
 ```
+CharSequenceインターフェースを実装しているオブジェクトはtoStringメソッドでStringオブジェクトに変換することができます。
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.017.jpeg" width="500px"><br>
 ```scala
