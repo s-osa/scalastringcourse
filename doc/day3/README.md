@@ -630,7 +630,7 @@ Surrogate Pairを考慮して文字列をCode Pointで扱うためには、最�
 <li><a href="https://www.ibm.com/developerworks/jp/ysl/library/java/j-unicode_surrogate/" target="_blank">https://www.ibm.com/developerworks/jp/ysl/library/java/j-unicode_surrogate/</a>（日本語）
 </ul>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.027.jpeg" width="500px"><br>
-IBMのMasahiko Maederaさんの技術文書で最も高速な変換は、StringをChar配列に変換して、Char配列からCode Point配列にCharacter.toCodePointメソッドを使用して変換する方法でした。参考までに、サンプルコードには、これをScalaで書いたものを載せました。
+IBMのMasahiko Maederaさんの技術文書によると、最も高速な変換は、StringをChar配列に変換して、Char配列からCode Point配列にCharacter.toCodePointメソッドを使用して変換する方法です。参考までに、サンプルコードには、これをScalaで書いたものを載せました。
 ```scala
   @Test
   def testCharSequenceToCodePointArrayUnderJava8(): Unit = {
