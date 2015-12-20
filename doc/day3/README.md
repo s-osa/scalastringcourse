@@ -598,6 +598,7 @@ StringCharacterIteratorは、コンストラクタにStringオブジェクトを
     assert(builder.result() == "彁野家")
   }
 ```
+逆方向から解析すると結果は"家野彁"のように逆順になります。
 ```scala
   @Test
   def testStringCharacterBackwardIterator(): Unit = {
