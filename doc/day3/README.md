@@ -571,7 +571,7 @@ codePointAt/codePointBeforeメソッドと同様に、CharacterクラスはChar�
 ```
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.024.jpeg" width="500px"><br>
-StringCharacterIteratorは、コンストラクタにStringオブジェクトを与えることでChar単位でイテレートすることができます。StringCharacterIteratorが実装するCharacterIteratorインターフェースは順方向から解析するためのfirstメソッドとnextメソッド、そして逆方向から解析するためのlastメソッドとpreviousメソッドを保持しています。CharacterIterator.DONEでイテレータの終了を判定します。CharacterIterator.DONEはUnicodeの領域上で文字が割り当てられていない<a href="http://www.fileformat.info/info/unicode/char/ffff/index.htm" target="_blank">U+FFFF</a>です。
+StringCharacterIteratorは、コンストラクタにStringオブジェクトを与えることでChar単位でイテレートすることができます。StringCharacterIteratorが実装するCharacterIteratorインターフェースは順方向から解析するためのfirstメソッドとnextメソッド、そして逆方向から解析するためのlastメソッドとpreviousメソッドを保持しています。CharacterIterator.DONEでイテレータの終了を判定します。CharacterIterator.DONEはUnicode上で文字が割り当てられていない<a href="http://www.fileformat.info/info/unicode/char/ffff/index.htm" target="_blank">U+FFFF</a>です。
 ```scala
   @Test
   def testStringCharacterForwardIterator(): Unit = {
@@ -620,14 +620,17 @@ StringCharacterIteratorは、コンストラクタにStringオブジェクトを
 ```
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.025.jpeg" width="500px"><br>
+Surrogate Pairを考慮して文字列をCode Pointで扱うためには、最低でもこのスライドで示したリンクは覚えて欲しいです。
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.026.jpeg" width="500px"><br>
+上記のStringオブジェクトからCode Point配列への変換は、Java 8で初めて作られたCharSequenceインターフェースのtoCodePointsメソッドによって可能となります。Java 7以前では、StringオブジェクトからどのようにするとCode Point配列が得られるのでしょうか。これに関するIBMのMasahiko Maederaさんが英語と日本語でJava言語で技術文書を公開しています。
 <ul>
 <li><a href="http://www.ibm.com/developerworks/library/j-unicode/" target="_blank">http://www.ibm.com/developerworks/library/j-unicode/</a>（英語）
 <li><a href="https://www.ibm.com/developerworks/jp/java/library/j-unicode/" target="_blank">https://www.ibm.com/developerworks/jp/java/library/j-unicode/</a>（日本語）
 <li><a href="https://www.ibm.com/developerworks/jp/ysl/library/java/j-unicode_surrogate/" target="_blank">https://www.ibm.com/developerworks/jp/ysl/library/java/j-unicode_surrogate/</a>（日本語）
 </ul>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.027.jpeg" width="500px"><br>
+IBMのMasahiko Maederaさんの技術文書で最も高速な変換は、StringをChar配列に変換して、Char配列からCode Point配列にCharacter.toCodePointメソッドを使用して変換する方法でした。参考までに、サンプルコードには、これをScalaで書いたものを載せました。
 ```scala
   @Test
   def testCharSequenceToCodePointArrayUnderJava8(): Unit = {
