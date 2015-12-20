@@ -419,6 +419,8 @@ CharSequenceインターフェースを実装しているStringオブジェク�
 Char配列からStringオブジェクトへは、Stringクラスのコンストラクタを使用して変換することができます。
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.018.jpeg" width="500px"><br>
+StringオブジェクトからChar数とCodePoint数の取得方法を説明します。
+Char数とCodePoint数はStringオブジェクト内にSurrogate Pairが存在しない場合は一致します。しかし、Surrogate Pairが含まれている場合には、Char数よりCode Point数が少なくなります。Char数からCode Point数を引いた数がStringオブジェクト内に存在するSurrogate Pairの数です。
 ```scala
   @Test
   def testNumOfCharactersAndChars(): Unit = {
@@ -440,8 +442,14 @@ Char配列からStringオブジェクトへは、Stringクラスのコンスト�
     assert(numOfCharactersOfStrWithSurrogatePair == numOfCharactersOfStrWithoutSurrogatePair)
   }
 ```
+"𠮷野家"の"𠮷"はSurrogate Pairです。従って、Char数は4、Code Point数は3、Surrogate Pair数は1です。
+一方で、"吉野家"の"吉"はSurrogate Pairではありません。従って、Char数は3、Code Point数は3、Surrogate Pair数は0です。
+<br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.019.jpeg" width="500px"><br>
+Char数はString.lengthメソッドで取得できます。
+<br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.020.jpeg" width="500px"><br>
+Code Point数はString.codePointメソッドで取得できます。
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.021.jpeg" width="500px"><br>
 ```scala
