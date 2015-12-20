@@ -572,6 +572,7 @@ codePointAt/codePointBeforeメソッドと同様に、CharacterクラスはChar�
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.024.jpeg" width="500px"><br>
 StringCharacterIteratorは、コンストラクタにStringオブジェクトを与えることでChar単位でイテレートすることができます。StringCharacterIteratorが実装するCharacterIteratorインターフェースは順方向から解析するためのfirstメソッドとnextメソッド、そして逆方向から解析するためのlastメソッドとpreviousメソッドを保持しています。CharacterIterator.DONEでイテレータの終了を判定します。CharacterIterator.DONEはUnicode上で文字が割り当てられていない<a href="http://www.fileformat.info/info/unicode/char/ffff/index.htm" target="_blank">U+FFFF</a>です。
+サンプルコードは、Surrogate Pairを発見したら幽霊文字の「彁」に置き換える（呪詛的な）処理です。
 ```scala
   @Test
   def testStringCharacterForwardIterator(): Unit = {
