@@ -180,12 +180,13 @@ Code PointからLow SurrogateをCharacter.lowSurrogateメソッドで取得で�
 ```
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.013.jpeg" width="500px"><br>
-CharSequenceインターフェース、Stringクラス、Char配列からCode PointにcodePointAt/codePointBeforeメソッドを使用して変換できます。
+CharSequenceインターフェースを実装するオブジェクト、Stringオブジェクト、Char配列からCode PointにcodePointAt/codePointBeforeメソッドを使用して変換できます。
 codePointAtは順方向、codePointBeforeは逆方向に解析します。
 <br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.014.jpeg" width="500px"><br>
-CharSequenceインターフェース、Stringクラス、Char配列のどのメソッドを使用するのが良いかについては、Char配列のようなLower Levelで扱うと処理が高速化し、StringクラスのようなHigher Levelで扱うと処理速度は低下します。
-一般的にできるだけLower Levelで処理を書くと（究極的にはJVMや<a href="https://ja.wikipedia.org/wiki/LLVM" target="_blank">LLVM</a>、<a href="https://ja.wikipedia.org/wiki/%E3%82%A2%E3%82%BB%E3%83%B3%E3%83%96%E3%83%AA%E8%A8%80%E8%AA%9E" target="_blank">アセンブリ言語</a>、<a href="https://ja.wikipedia.org/wiki/%E6%A9%9F%E6%A2%B0%E8%AA%9E" target="_blank">機械語</a>など）処理は高速化しますが、プログラム長が長くなり、プログラムを書く時間が延び、変数が増え、可読性が下がるため、バグが発生しやすく、保守性が低いプログラムになります。逆にできるだけHigher Levelで書くと、無駄にメモリを使用したり、余計なオーバヘッドが発生し、処理が遅くなりがちです。例えば、Char配列のラッパークラスのStringクラスからCharを扱うと、Stringが持つ処理に不要なメソッドがメモリに乗りメモリ効率が悪く、また、Stringを介してChar配列にアクセスするため、直接Char配列にアクセスするより、速度が低下します。プログラミングでは、このようなトレードオフがよく発生します。どのくらいの保守性低下を許してどのくらいの処理高速化をとるのかはケースバイケースでのプログラマによる選択が必要です。
+CharSequenceインターフェースを実装するオブジェクト、Stringオブジェクト、Char配列のどのメソッドを使用するのが良いかについては、Char配列のようなLower Levelで扱うと処理が高速化し、StringオブジェクトのようなHigher Levelで扱うと処理速度は低下します。
+一般的にできるだけLower Levelで処理を書くと（究極的にはJVMや<a href="https://ja.wikipedia.org/wiki/LLVM" target="_blank">LLVM</a>、<a href="https://ja.wikipedia.org/wiki/%E3%82%A2%E3%82%BB%E3%83%B3%E3%83%96%E3%83%AA%E8%A8%80%E8%AA%9E" target="_blank">アセンブリ言語</a>、<a href="https://ja.wikipedia.org/wiki/%E6%A9%9F%E6%A2%B0%E8%AA%9E" target="_blank">機械語</a>など）処理は高速化しますが、プログラム長が長くなり、プログラムを書く時間が延び、変数が増え、可読性が下がるため、バグが発生しやすく、保守性が低いプログラムになります。逆にできるだけHigher Levelで書くと、無駄にメモリを使用したり、余計なオーバヘッドが発生し、処理が遅くなりがちです。例えば、Char配列のラッパークラスのStringクラスからCharを扱うと、Stringクラスが持つ処理に不要なメソッドがメモリに乗りメモリ効率が悪く、また、Stringクラスを介してChar配列にアクセスするため、直接Char配列にアクセスするより、速度が低下します。プログラミングでは、このようなトレードオフがよく発生します。どのくらいの保守性低下を許してどのくらいの処理高速化をとるのかはケースバイケースでのプログラマによる選択が必要です。  <br><br>
+Char配列からCode Pointに順方向にCharacter.codePointAtメソッドで変換する。
 ```scala
   @Test
   def testCharArrayElementToCodePointInForwardDirection1(): Unit = {
@@ -227,12 +228,13 @@ CharSequenceインターフェース、Stringクラス、Char配列のどのメ�
     assert(codePoint == 0xDFB7)
   }
 ```
+CharSequenceインターフェースを実装するオブジェクトからCode Pointに順方向にCharacter.codePointAtメソッドで変換する。
 ```scala
   @Test
   def testCharSequenceToCodePointInForwardDirection(): Unit = {
     val charSequence: CharSequence = "CharSequenceは、String、StringBuilder、 StringBuffer、CharBufferなどが実装しているインターフェース"
     val index: Int = 0
-    val codePoint: Int = Character.codePointAt(seq, index)
+    val codePoint: Int = Character.codePointAt(charSequence, index)
     //NullPointerException:
     //charSequenceがnullである場合発生
     //IndexOutOfBoundsException:
@@ -241,6 +243,7 @@ CharSequenceインターフェース、Stringクラス、Char配列のどのメ�
     assert(codePoint == 'C')
   }
 ```
+StringオブジェクトからCode Pointに順方向にString.codePointAtメソッドで変換する。
 ```scala
   @Test
   def testStringToCodePointInForwardDirection(): Unit = {
@@ -255,6 +258,7 @@ CharSequenceインターフェース、Stringクラス、Char配列のどのメ�
     assert(codePoint == 'C')
   }
 ```
+Char配列からCode Pointに逆方向にCharacter.codePointBeforeメソッドで変換する。
 ```scala
   @Test
   def testCharArrayElementToCodePointInBackwardDirection1(): Unit = {
@@ -296,12 +300,13 @@ CharSequenceインターフェース、Stringクラス、Char配列のどのメ�
     assert(codePoint == 0xD842)
   }
 ```
+CharSequenceインターフェースを実装するオブジェクトからCode Pointに逆方向にCharacter.codePointBeforeメソッドで変換する。
 ```scala
   @Test
   def testCharSequenceToCodePointInBackwardDirection(): Unit = {
     val charSequence: CharSequence = "CharSequenceは、String、StringBuilder、 StringBuffer、CharBufferなどが実装しているインターフェース"
     val index: Int = 1
-    val codePoint: Int = Character.codePointBefore(seq, index)
+    val codePoint: Int = Character.codePointBefore(charSequence, index)
     //NullPointerException:
     //charSequenceがnullである場合発生
     //IndexOutOfBoundsException:
@@ -310,6 +315,7 @@ CharSequenceインターフェース、Stringクラス、Char配列のどのメ�
     assert(codePoint == 'C')
   }
 ```
+StringオブジェクトからCode Pointに逆方向にString.codePointBeforeメソッドで変換する。
 ```scala
   @Test
   def testStringToCodePointInBackwardDirection(): Unit = {
