@@ -331,6 +331,7 @@ StringオブジェクトからCode Pointに逆方向にString.codePointBeforeメ
   }
 ```
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.015.jpeg" width="500px"><br>
+このスライドは、codePointAt/codePointBeforeメソッドが、Surrogate Pairを壊すように解析を開始・終了した場合の挙動を示します。
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.016.jpeg" width="500px"><br>
 ```scala
