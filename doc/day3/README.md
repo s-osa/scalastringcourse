@@ -331,7 +331,7 @@ StringオブジェクトからCode Pointに逆方向にString.codePointBeforeメ
   }
 ```
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.015.jpeg" width="500px"><br>
-このスライドは、codePointAt/codePointBeforeメソッドが、Surrogate Pairを壊すように解析を開始・終了した場合の挙動を示します。
+このスライドは、codePointAt/codePointBeforeメソッドが、Surrogate Pairを壊すように解析を開始・終了した場合の挙動を示します。Surrogate Pairが途中で切れてしまった場合にはSurrogate PairのCode Pointは取得できないため、観測されているSurrogateのCode Pointを返します。
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.016.jpeg" width="500px"><br>
 CharSequenceインターフェースを実装したオブジェクトとStringオブジェクトとの間の相互変換について説明します。
@@ -358,6 +358,7 @@ StringオブジェクトはCharSequenceインターフェースを実装して�
 CharSequenceインターフェースを実装しているオブジェクトはtoStringメソッドでStringオブジェクトに変換することができます。
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.017.jpeg" width="500px"><br>
+StringオブジェクトとChar配列との相互変換について説明します。
 ```scala
   @Test
   def testCharSequenceToCharArray(): Unit = {
@@ -373,6 +374,7 @@ CharSequenceインターフェースを実装しているオブジェクトはto
     assert(charArray.last == '家')
   }
 ```
+CharSequenceインターフェースを実装しているオブジェクトからChar配列へは、CharSequenceインターフェースのcharsメソッド（Java 8以降）でInt Streamを介して変換することができます。
 ```scala
   @Test
   def testStringToCharArray1(): Unit = {
@@ -388,6 +390,7 @@ CharSequenceインターフェースを実装しているオブジェクトはto
     assert(charArray.last == '家')
   }
 ```
+StringオブジェクトからChar配列へ、toCharArrayメソッドを使用して変換できます。
 ```scala
   @Test
   def testStringToCharArray2(): Unit = {
@@ -403,6 +406,7 @@ CharSequenceインターフェースを実装しているオブジェクトはto
     assert(charArray.last == '家')
   }
 ```
+CharSequenceインターフェースを実装しているStringオブジェクトからChar配列へは、CharSequenceインターフェースのcharsメソッド（Java 8以降）でInt Streamを介して変換することができます。
 ```scala
   @Test
   def testCharArrayToString(): Unit = {
@@ -412,6 +416,7 @@ CharSequenceインターフェースを実装しているオブジェクトはto
     assert(str == "𠮷野家")
   }
 ```
+Char配列からStringオブジェクトへは、Stringクラスのコンストラクタを使用して変換することができます。
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.018.jpeg" width="500px"><br>
 ```scala
