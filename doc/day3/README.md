@@ -7,8 +7,8 @@ ScalaのCharにはChar１つで表せない文字が存在するため、文字�
 CharやStringは<a href="https://ja.wikipedia.org/wiki/UTF-16" target="_blank">UTF-16</a>であり、<a href="https://ja.wikipedia.org/wiki/%E5%9F%BA%E6%9C%AC%E5%A4%9A%E8%A8%80%E8%AA%9E%E9%9D%A2" target="_blank">BMP領域</a>ではChar１つで１文字、<a href="https://ja.wikipedia.org/wiki/%E8%BF%BD%E5%8A%A0%E9%9D%A2" target="_blank">Supplementary領域</a>ではChar２つで１文字を表現します。
 なお、プログラム上で文字を扱う場合は<a href="https://ja.wikipedia.org/wiki/%E3%83%90%E3%82%A4%E3%83%88%E3%82%AA%E3%83%BC%E3%83%80%E3%83%BC%E3%83%9E%E3%83%BC%E3%82%AF" target="_blank">BOM (Byte Order Mark)</a>はつけずに、一般的には<a href="https://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%B3%E3%83%87%E3%82%A3%E3%82%A2%E3%83%B3" target="_blank">Big Endian</a>で扱います。実際には使用するEndianはCPUに依存して選択されるべきですが、ScalaやJavaなど<a href="https://ja.wikipedia.org/wiki/Java%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3" target="_blank">JVM</a>上で動く言語ではJVMの仕様により必ずBig Endianで扱います。
 <h3>メモ：BOMとEndian</h3>
-BOMとは、Unicodeで符号化した際にテキストの先頭につける制御記号のことです。BOMによりEndianの違いをReaderに認識させます。
-CPUの仕様により、データを４byte単位で区切った場合、先頭のbyteから順方向に読み込むのか、末尾のbyteから逆方向に読み込むのか、あるいはそれ以外の順序で読み込むのか、読み込む順序を宣言する必要があります。Endianとは４byteの読み込み順序の宣言です。先頭から順方向に読み込む場合Big Endianと言い、末尾から逆方向に読み込む場合Little Endianと言います。  
+BOMとは、Unicodeで符号化した際にテキストの先頭につける制御記号のことです。
+CPUの仕様により、データを４byte単位で区切った場合、先頭のbyteから順方向に読み込むのか、末尾のbyteから逆方向に読み込むのか、あるいはそれ以外の順序で読み込むのか、読み込む順序を決める必要があります。Endianとは４byteの読み込み順序です。先頭から順方向に読み込む場合Big Endianと言い、末尾から逆方向に読み込む場合Little Endianと言います。Endianの違いをBOMによりReaderに認識させるか、テキストと復号器がどのEndianを使用するかをあらかじめ決めておく必要があります。BOMをつけるUTF-16のことを「UTF-16」、BOMをつけないBig EndianのUTF-16のことを「UTF-16BE」、BOMをつけないLittle EndianのUTF-16のことを「UTF-16LE」と言います。そして、BOMをつけるUTF-32のことを「UTF-32」、BOMをつけないBig EndianのUTF-32のことを「UTF-32BE」、BOMをつけないLittle EndianのUTF-32のことを「UTF-32LE」と言います。  
 <table>
 <tr><th>符号化形式（符号化スキーム）</th><th>エンディアンの区別</th><th>バイトオーダーマーク（BOM）</th></tr>
 <tr><td>UTF-8</td><td></td><td>0xEF 0xBB 0xBF（なおBOM無しはUTF-8Nと呼ばれることがある）</td></tr>
@@ -22,8 +22,6 @@ CPUの仕様により、データを４byte単位で区切った場合、先頭�
 <tr><td>UTF-32LE</td><td>&nbsp;</td><td>（付加は認められない）</td></tr>
 <tr><td>UTF-7</td><td>&nbsp;</td><td>0x2B 0x2F 0x76 ※ （※は次のバイトの値によって異なり、0x38、0x39、0x2B、0x2Fのいずれかがくる）</td></tr>
 </table>
-		
-		
 Endianという言葉は、ガリバー旅行記の第1部「小人国」に登場する、卵を丸い方の端から割る人々（Big Endians）と尖った方の端から割る人々 (Little Endians) に由来するようです。
 <h3>メモ：UTF-8のBOMを無視する方法</h3>
 ***
