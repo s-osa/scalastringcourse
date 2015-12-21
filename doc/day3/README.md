@@ -21,10 +21,16 @@ CPUの仕様により、データを４byte単位で区切った場合、先頭�
 <tr><td>LE</td><td>0xFF 0xFE 0x00 0x00</td></tr>
 <tr><td>UTF-32BE</td><td>&nbsp;</td><td>（付加は認められない）</td></tr>
 <tr><td>UTF-32LE</td><td>&nbsp;</td><td>（付加は認められない）</td></tr>
-<tr><td>UTF-7</td><td>&nbsp;</td><td>0x2B 0x2F 0x76 ※ （※は次のバイトの値によって異なり、0x38、0x39、0x2B、0x2Fのいずれかがくる）</td></tr>
+<tr><td><a href="https://ja.wikipedia.org/wiki/UTF-7" target="_blank">UTF-7</a></td><td>&nbsp;</td><td>0x2B 0x2F 0x76 ※ （※は次のバイトの値によって異なり、0x38、0x39、0x2B、0x2Fのいずれかがくる）</td></tr>
 </table>
 Endianという言葉は、ガリバー旅行記の第1部「小人国」に登場する、卵を丸い方の端から割る人々（Big Endians）と尖った方の端から割る人々 (Little Endians) に由来するようです。
-<h3>メモ：UTF-8のBOMを無視する方法</h3>
+<h3>メモ：<a href="https://ja.wikipedia.org/wiki/UTF-8" target="_blank">UTF-8</a>のBOMを無視する方法</h3>
+
+UTF-8のBOMは<a href="https://ja.wikipedia.org/wiki/Vim" target="_blank">Vim</a>のバイナリモードで確認し手動で除去できます。
+```bash
+vi -b file_path
+```
+UTF-8のBOMをScala上から削除するには、
 ***
 <br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.003.jpeg" width="500px"><br>
