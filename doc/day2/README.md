@@ -229,7 +229,7 @@ raw補間子ですが、raw補間子は生文字リテラルと同じように�
 ***
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day2/string_course.012.jpeg" width="500px">
 <br>
-改行の扱いにおいて、文字列リテラルにraw補間子を使用した場合と生文字リテラルとの間に違いがあります。raw補間子で解釈する前は文字列リテラルなので、文字列リテラルの内部では生文字リテラルのように改行することはできません。
+改行とダブルクォーテーション記号の扱いにおいて、文字列リテラルにraw補間子を使用した場合と生文字リテラルとの間に違いがあります。raw補間子で解釈する前は文字列リテラルなので、文字列リテラルの内部では生文字リテラルのように改行することはできません。文字列リテラルの内部にはダブルクォーテーション記号を書くこともできません。
 ```scala
   @Test
   def testDifferenceBetweenRawInterpolationAndRawStringLiteral(): Unit = {
