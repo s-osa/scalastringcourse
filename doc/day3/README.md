@@ -25,12 +25,14 @@ CPUの仕様により、データを４byte単位で区切った場合、先頭�
 </table>
 Endianという言葉は、ガリバー旅行記の第1部「小人国」に登場する、卵を丸い方の端から割る人々（Big Endians）と尖った方の端から割る人々 (Little Endians) に由来するようです。
 <h3>メモ：<a href="https://ja.wikipedia.org/wiki/UTF-8" target="_blank">UTF-8</a>のBOMを無視する方法</h3>
-
+UTF-8のBOMは無意味。
+だが、Windowsが嫌がらせのように自動付加してきて、
+プログラム上からBOM付きのUTF-8のファイルを読み込もうとするとXMLパーサなどでエラーが出る。
 UTF-8のBOMは<a href="https://ja.wikipedia.org/wiki/Vim" target="_blank">Vim</a>のバイナリモードで確認し手動で除去できます。
 ```bash
 vi -b file_path
 ```
-UTF-8のBOMをScala上から削除するには、
+UTF-8のBOMをScala上から無視するには、
 ***
 <br>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day3/string_course.003.jpeg" width="500px"><br>
