@@ -9,7 +9,7 @@ CharやStringは<a href="https://ja.wikipedia.org/wiki/UTF-16" target="_blank">U
 <h3>メモ：BOMとEndian</h3>
 BOMとはUnicodeで符号化した際にテキストデータの先頭につける制御記号のことです。
 CPUの仕様により、データを４byte単位で区切った場合、先頭のbyteから順方向に読み込むのか、末尾のbyteから逆方向に読み込むのか、あるいはそれ以外の順序で読み込むのか、読み込む順序を決める必要があります。Endianとは４byteの読み込み順序です。先頭から順方向に読み込む場合Big Endianと言い、末尾から逆方向に読み込む場合Little Endianと言います。Endianの違いをBOMにより復号器に認識させるか、テキストと復号器がどのEndianを使用するかをあらかじめ決めておく必要があります。BOMをつけてBOMでEndianを宣言するUTF-16のことを「UTF-16」、BOMをつけないでBig Endianと決められているUTF-16のことを「UTF-16BE」、BOMをつけないでLittle Endianと決められているUTF-16のことを「UTF-16LE」と言います。そして、BOMをつけてBOMでEndianを宣言するUTF-32のことを「UTF-32」、BOMをつけないでBig Endianと決められているUTF-32のことを「UTF-32BE」、BOMをつけないでLittle Endianと決められているUTF-32のことを「UTF-32LE」と言います。
-さらに、BOMをつけてBOMでEndianを宣言することになっているがBOMが存在しなかった場合はデフォルトでBig Endianとして読み込むことがUnicodeで決められているが、WindowsではLittle Endianとして読み込まれます。  
+さらに、BOMをつけてBOMでEndianを宣言することになっていますがBOMが存在しなかった場合はデフォルトでBig Endianとして読み込むことがUnicodeで決められていますが、WindowsではLittle Endianとして読み込まれます。  
 <table>
 <tr><th>符号化形式（符号化スキーム）</th><th>エンディアンの区別</th><th>バイトオーダーマーク（BOM）</th></tr>
 <tr><td>UTF-8</td><td></td><td>0xEF 0xBB 0xBF（なおBOM無しはUTF-8Nと呼ばれることがある）</td></tr>
